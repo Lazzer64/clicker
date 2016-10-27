@@ -10,10 +10,21 @@ app.controller('ClickerCtrl', function($scope, $interval) {
     $scope.score = 0;
     $scope.money = 0;
     $scope.clicksPerSecond = 0;
+    $scope.clickPower = 10;
+
+    $scope.upgrade = function(opts){
+        $scope.clickPower += opts.amnt;
+    }
+
+    $scope.autoclicker = function(opts){
+        $scope.clicksPerSecond += opts.clicks;
+    }
+
     $scope.shop = {
-        'auto1':  { name: 'Minion',       amnt: 0, price: 50,   clicks: 1,   unlock: 20  },
-        'auto2':  { name: 'Super minion', amnt: 0, price: 200,  clicks: 5,   unlock: 100 },
-        'auto3':  { name: 'Uber minion',  amnt: 0, price: 1000, clicks: 25,  unlock: 500 },
+        'upgrade':  { name: 'Upgrade',       amnt: 0, price: 10,   use: $scope.upgrade,     params:{amnt:1},     unlock: 20  },
+        'auto1':    { name: 'Minion',        amnt: 0, price: 50,   use: $scope.autoclicker, params:{clicks:1},   unlock: 20  },
+        'auto2':    { name: 'Super minion',  amnt: 0, price: 200,  use: $scope.autoclicker, params:{clicks:5},   unlock: 100 },
+        'auto3':    { name: 'Uber minion',   amnt: 0, price: 1000, use: $scope.autoclicker, params:{clicks:25},  unlock: 500 }
     };
 
     $interval( function() {
@@ -33,6 +44,6 @@ app.controller('ClickerCtrl', function($scope, $interval) {
         if($scope.money < item.price) return;
         $scope.spend(item.price);
         item.amnt++;
-        if(item.clicks) $scope.clicksPerSecond += item.clicks;
+        if(item.use) item.use(item.params);
     };
 });

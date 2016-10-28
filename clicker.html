@@ -27,7 +27,7 @@
                                 <button class='btn btn-primary btn-block' 
                          title={{item.tip}}
                          ng-click='buy(item)'
-                         ng-disabled='money < {{item.price}}'>
+                         ng-disabled='!canbuy(item)'>
                                     {{'Buy $'+item.price}}
                                 </button>
                             </td>

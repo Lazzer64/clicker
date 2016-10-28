@@ -28,16 +28,22 @@ app.controller('ClickerCtrl', function($scope, $interval) {
     };
 
     $scope.shop = {
-        'upgrade':  { name: 'Upgrade Clicker',       amnt: 0, price: 20,   use: $scope.upgrade,      params:{amnt:1},     unlock: 10  },
-        'auto1':    { name: 'Auto Clicker',          amnt: 0, price: 50,   use: $scope.autoclicker,  params:{clicks:1},   unlock: 20  },
-        'auto2':    { name: 'Super Auto Clicker',    amnt: 0, price: 200,  use: $scope.autoclicker,  params:{clicks:5},   unlock: 100 },
-        'auto3':    { name: 'Uber Auto minion',      amnt: 0, price: 1000, use: $scope.autoclicker,  params:{clicks:25},  unlock: 500 },
-        'crit':     { name: 'Critical Click Chance', amnt: 0, price: 1, use: $scope.increaseCrit, params:{amnt:0.01},  unlock: 0 }
+        'upg'  : { name: 'Upgrade Clicker',       amnt: 0, price: 20,   use: $scope.upgrade,      params:{amnt:1},    unlock: 10   },
+        'au1'  : { name: 'Auto Clicker',          amnt: 0, price: 50,   use: $scope.autoclicker,  params:{clicks:1},  unlock: 20   },
+        'au2'  : { name: 'Super Auto Clicker',    amnt: 0, price: 200,  use: $scope.autoclicker,  params:{clicks:5},  unlock: 100  },
+        'au3'  : { name: 'Uber Auto Clicker',     amnt: 0, price: 1000, use: $scope.autoclicker,  params:{clicks:25}, unlock: 500  },
+        'crit' : { name: 'Critical Click Chance', amnt: 0, price: 500,  use: $scope.increaseCrit, params:{amnt:0.01}, unlock: 1000, max: 25 }
     };
 
     $interval( function(){
         $scope.click($scope.clicksPerSecond);
     }, 1000);
+
+    $scope.canbuy = function(item) {
+        if($scope.money < item.price) return false;
+        if(item.max && item.amnt === item.max) return false;
+        return true;
+    }
 
     $scope.rollCrit = function(){
         if ($scope.score < $scope.shopUnlock) return 0;

@@ -24,11 +24,11 @@
                             <td>{{item.name}}</td>
                             <td>{{item.amnt}}</td>
                             <td>
-                                <button class='btn btn-primary btn-block' 
-                         title={{item.tip}}
+                                <button class='btn btn-block' 
+                         ng-class='soldout(item) ? "btn-danger" : "btn-primary"'
                          ng-click='buy(item)'
                          ng-disabled='!canbuy(item)'>
-                                    {{'Buy $'+item.price}}
+                                    {{ soldout(item) ? 'Sold Out!' : 'Buy $'+item.price }}
                                 </button>
                             </td>
                         </tr>

@@ -28,11 +28,13 @@ app.controller('ClickerCtrl', function($scope, $interval) {
     };
 
     $scope.shop = {
-        'upg'  : { name: 'Upgrade Clicker',       amnt: 0, price: 20,   use: $scope.upgrade,      params:{amnt:1},    unlock: 10   },
+        'upg'  : { name: 'Upgrade Clicker',       amnt: 0, price: 50,   use: $scope.upgrade,      params:{amnt:1},    unlock: 10,   max: 99 },
+        'crit' : { name: 'Critical Click Chance', amnt: 0, price: 500,  use: $scope.increaseCrit, params:{amnt:0.01}, unlock: 1000, max: 25 },
         'au1'  : { name: 'Auto Clicker',          amnt: 0, price: 50,   use: $scope.autoclicker,  params:{clicks:1},  unlock: 20   },
         'au2'  : { name: 'Super Auto Clicker',    amnt: 0, price: 200,  use: $scope.autoclicker,  params:{clicks:5},  unlock: 100  },
         'au3'  : { name: 'Uber Auto Clicker',     amnt: 0, price: 1000, use: $scope.autoclicker,  params:{clicks:25}, unlock: 500  },
-        'crit' : { name: 'Critical Click Chance', amnt: 0, price: 500,  use: $scope.increaseCrit, params:{amnt:0.01}, unlock: 1000, max: 25 }
+        'au3'  : { name: 'Uberer Auto Clicker',   amnt: 0, price: 10000, use: $scope.autoclicker, params:{clicks:100}, unlock: 5000  },
+        'au3'  : { name: 'Uberist Auto Clicker',  amnt: 0, price: 50000, use: $scope.autoclicker, params:{clicks:600}, unlock: 1000  }
     };
 
     $interval( function(){

@@ -62,11 +62,32 @@ app.controller('ClickerCtrl', function($scope, $interval) {
         return crit;
     };
 
+    $scope.clickText = function(string) {
+        var text = document.createElement('div');
+        text.innerHTML = string;
+        text.className = 'fade-out fly-up';
+
+        var clicks  = document.getElementById('clicks')
+        clicks.appendChild(text);
+
+        text.addEventListener('webkitAnimationEnd',function(event){
+            clicks.removeChild(text);
+        }, false);
+    }
+
     $scope.click = function (amnt) {
+        if(amnt <= 0) return;
+        var text = '+'+amnt;
         var mult = 1;
-        if ($scope.rollCrit()) mult += 1;
+
+        if ($scope.rollCrit()) {
+            mult += 1;
+            text = 'Crit!'+text
+        }
+
         $scope.score += amnt * mult;
         $scope.money += amnt * mult;
+        $scope.clickText(text);
     };
 
     $scope.spend = function (amnt) {

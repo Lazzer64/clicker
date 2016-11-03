@@ -8,6 +8,11 @@
     to   { opacity: 1; }
 }
 
+@keyframes fly-up-frames {
+    from { top: 0px; }
+    to   { top: -40px; }
+}
+
 .fade-out {
     animation-name: fade-out-frames;
     animation-duration: 1s;
@@ -16,4 +21,16 @@
 .fade-in {
     animation-name: fade-in-frames;
     animation-duration: 1s;
+}
+
+.fade-out.fly-up {
+    position: absolute;
+    animation-name: fly-up-frames, fade-out-frames;
+    animation-duration: 1s;
+}
+
+#clicks {
+    text-align: left;
+    display: inline-block;
+    position: absolute;
 }

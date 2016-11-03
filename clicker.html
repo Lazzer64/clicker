@@ -10,6 +10,8 @@
     <div ng-show='score > 0' class='fade-in container-fluid'>
         <div class='row'>
             <h3 class='text-center'>
+                <div id='clicks'></div>
+                <br />
                 Clicks: {{score}} 
                 <span ng-show='clicksPerSecond > 0'><small>+ {{clicksPerSecond}}/s</small></span>
             </h3>

@@ -7,7 +7,7 @@
         <small><span class='glyphicon glyphicon-hand-left'></span></small>
     </h1>
     <hr>
-    <div ng-show='score > 0' class='container-fluid'>
+    <div ng-show='score > 0' class='fade-in container-fluid'>
         <div class='row'>
             <h3 class='text-center'>
                 Clicks: {{score}} 
@@ -17,10 +17,10 @@
 
         <div class='row'>
             <div class='col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3'>
-                <div ng-show='score >= 10' class='panel panel-default'>
+                <div ng-show='score >= 10' class='fade-in panel panel-default'>
                     <div class="panel-heading"><h3 class='text-center'>${{money}}</h3></div>
                     <table class='table text-center'>
-                        <tr ng-show='score >= item.unlock' ng-repeat='item in shop'>
+                        <tr ng-show='score >= item.unlock' ng-repeat='item in shop' class='fade-in'>
                             <td>{{item.name}}</td>
                             <td>{{item.amnt}}</td>
                             <td>
